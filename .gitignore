@@ -1,0 +1,12 @@
+auth_info/
+node_modules/
+.env
+creds.json
+auth_info_*
+
+sessions/
+data/
+auth_info/
+auth_info_*/
+*.backup.js
+index.original.js

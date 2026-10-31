@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luttuxer MD | Dashboard</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+background:radial-gradient(circle at top,#073b69,#020817 65%);
+color:#eafaff;
+font-family:Arial,sans-serif;
+min-height:100vh;
+}
+header{
+padding:22px;
+text-align:center;
+border-bottom:1px solid #087dbb;
+}
+header h2{color:#16caff;letter-spacing:3px;margin:0}
+header p{color:#8acbea;font-size:12px}
+main{max-width:650px;margin:auto;padding:20px}
+.poster{
+width:100%;
+border-radius:20px;
+border:2px solid #12bfff;
+box-shadow:0 0 25px #008cff80;
+}
+.card{
+margin-top:22px;
+padding:22px;
+border:1px solid #087dbb;
+border-radius:18px;
+background:#061a30;
+box-shadow:0 0 18px #008cff20;
+}
+h3{color:#20cfff;margin-top:0}
+.status{color:#38f5a5;font-weight:bold}
+.item{
+padding:14px;
+margin-top:12px;
+background:#092944;
+border-radius:12px;
+border:1px solid #105b86;
+}
+button{
+width:100%;
+padding:15px;
+margin-top:16px;
+border:0;
+border-radius:12px;
+background:linear-gradient(90deg,#087bdb,#00c8ff);
+color:white;
+font-weight:bold;
+font-size:15px;
+}
+footer{text-align:center;color:#6399b8;padding:25px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<h2>LUTTUXER MD</h2>
+<p>WHATSAPP BOT CONTROL PANEL</p>
+</header>
+<main>
+<img class="poster" src="/luttu-banner.jpg" alt="Luttuxer MD Poster">
+
+<div class="card">
+<h3>🤖 BOT DASHBOARD</h3>
+<div class="item">Server Status: <span class="status" id="status">Checking...</span></div>
+<div class="item">Platform: Termux</div>
+<div class="item">Project: Luttuxer MD</div>
+<button onclick="checkStatus()">CHECK SERVER STATUS</button>
+</div>
+
+<div class="card">
+<h3>⚡ SESSION MANAGER</h3>
+<div class="item">Session management: Coming soon</div>
+<div class="item">Secure account connection</div>
+</div>
+</main>
+<footer>POWERED BY LUTTUXER MD 🤍</footer>
+<script>
+async function checkStatus(){
+const el=document.getElementById("status");
+try{
+const r=await fetch("/api/health");
+const d=await r.json();
+el.textContent=d.status==="online"?"● ONLINE":"OFFLINE";
+}catch(e){el.textContent="● OFFLINE";}
+}
+checkStatus();
+</script>
+</body>
+</html>
