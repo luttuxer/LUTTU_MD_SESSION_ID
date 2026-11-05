@@ -123,16 +123,12 @@ footer{
 }
 .reveal{
  opacity:0;
- transform:translateX(-65px);
+ transform:translateX(var(--reveal-x,-65px));
  transition:opacity .7s ease,transform .7s ease;
 }
 .reveal.show{
  opacity:1;
  transform:translateX(0);
-}
-.reveal.exit-right{
- opacity:0;
- transform:translateX(65px);
 }
 @media(prefers-reduced-motion:reduce){
  .reveal,.reveal.show,.reveal.exit-right{
@@ -209,17 +205,20 @@ const observer=new IntersectionObserver((entries)=>{
  entries.forEach((entry)=>{
   const el=entry.target;
 
-  if(entry.isIntersecting && scrollDirection==="down"){
-   el.classList.remove("exit-right");
-   requestAnimationFrame(()=>el.classList.add("show"));
-  }else if(!entry.isIntersecting && scrollDirection==="up"){
+  if(entry.isIntersecting){
    el.classList.remove("show");
-   el.classList.add("exit-right");
-  }else if(!entry.isIntersecting && scrollDirection==="down"){
-   el.classList.remove("show","exit-right");
+   el.style.setProperty(
+    "--reveal-x",
+    scrollDirection==="down"?"-65px":"65px"
+   );
+   requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>el.classList.add("show"));
+   });
+  }else{
+   el.classList.remove("show");
   }
  });
-},{threshold:0.15});
+},{threshold:0.12});
 
 document.querySelectorAll(".reveal").forEach((el,index)=>{
  el.style.transitionDelay=(index*0.10)+"s";
