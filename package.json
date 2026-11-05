@@ -4,7 +4,7 @@
   "description": "A powerful WhatsApp bot built with Baileys — Luttuxer MD 🤖",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dashboard.js",
     "dashboard": "node dashboard.js"
   },
   "keywords": [

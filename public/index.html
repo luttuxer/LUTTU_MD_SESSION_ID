@@ -3,103 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luttu MD | WhatsApp Bot Dashboard</title>
-<meta name="description" content="Luttu MD - Luttuxer MD WhatsApp bot dashboard, bot status and secure account connection information.">
+<title>Luttu MD | Official Dashboard</title>
+<meta name="description" content="Luttuxer MD WhatsApp Bot Dashboard">
 <meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow">
 <link rel="canonical" href="https://luttu-md-session-id.onrender.com/">
-<meta property="og:title" content="Luttu MD | WhatsApp Bot Dashboard">
-<meta property="og:description" content="Welcome to the official Luttu MD WhatsApp bot dashboard.">
-<meta property="og:url" content="https://luttu-md-session-id.onrender.com/">
-<meta property="og:type" content="website">
+<meta property="og:title" content="Luttu MD | Official Dashboard">
+<meta property="og:description" content="Official Luttuxer MD WhatsApp Bot Dashboard">
 <meta property="og:image" content="https://luttu-md-session-id.onrender.com/luttu-banner.jpg">
-<meta name="twitter:card" content="summary_large_image">
+
 <style>
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-margin:0;
-background:radial-gradient(circle at top,#073b69,#020817 65%);
-color:#eafaff;
-font-family:Arial,sans-serif;
-min-height:100vh;
+ margin:0;
+ background:#080808;
+ color:#f5f5f5;
+ font-family:Arial,sans-serif;
+ min-height:100vh;
+ overflow-x:hidden;
+}
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ background:radial-gradient(ellipse at top,#3b080d 0%,#080808 55%);
+ z-index:-1;
 }
 header{
-padding:22px;
-text-align:center;
-border-bottom:1px solid #087dbb;
+ text-align:center;
+ padding:30px 15px;
+ border-bottom:1px solid #501018;
+ background:#090909cc;
 }
-header h2{color:#16caff;letter-spacing:3px;margin:0}
-header p{color:#8acbea;font-size:12px}
-main{max-width:650px;margin:auto;padding:20px}
+header h2{
+ margin:0;
+ color:#ff263b;
+ letter-spacing:5px;
+ font-size:26px;
+ text-shadow:0 0 18px #ff152f80;
+}
+header p{
+ color:#999;
+ font-size:11px;
+ letter-spacing:3px;
+}
+main{max-width:680px;margin:auto;padding:22px}
+.hero{text-align:center;padding:20px 0 30px}
+.tag{
+ display:inline-block;
+ border:1px solid #8c1828;
+ color:#ff5264;
+ padding:8px 15px;
+ border-radius:30px;
+ font-size:10px;
+ letter-spacing:2px;
+ margin-bottom:18px;
+}
+.hero h1{
+ font-size:clamp(30px,8vw,48px);
+ margin:5px 0 12px;
+ letter-spacing:2px;
+}
+.hero h1 span{color:#ff263b}
+.hero p{color:#aaa;line-height:1.7;font-size:14px}
 .poster{
-width:100%;
-border-radius:20px;
-border:2px solid #12bfff;
-box-shadow:0 0 25px #008cff80;
+ width:100%;
+ display:block;
+ border-radius:18px;
+ border:1px solid #a51c30;
+ box-shadow:0 0 30px #ff183022;
 }
 .card{
-margin-top:22px;
-padding:22px;
-border:1px solid #087dbb;
-border-radius:18px;
-background:#061a30;
-box-shadow:0 0 18px #008cff20;
+ margin-top:24px;
+ padding:23px;
+ border:1px solid #48121a;
+ border-radius:18px;
+ background:linear-gradient(145deg,#191012,#0d0d0d 70%);
+ box-shadow:0 10px 35px #0008;
 }
-h3{color:#20cfff;margin-top:0}
-.status{color:#38f5a5;font-weight:bold}
+h3{color:#ff354a;margin:0 0 18px;font-size:18px}
 .item{
-padding:14px;
-margin-top:12px;
-background:#092944;
-border-radius:12px;
-border:1px solid #105b86;
+ padding:15px;
+ margin-top:12px;
+ background:#171012;
+ border:1px solid #40151d;
+ border-radius:12px;
+ color:#ddd;
+ font-size:14px;
 }
+.status{color:#42e99a;font-weight:bold}
 button{
-width:100%;
-padding:15px;
-margin-top:16px;
-border:0;
-border-radius:12px;
-background:linear-gradient(90deg,#087bdb,#00c8ff);
-color:white;
-font-weight:bold;
-font-size:15px;
+ width:100%;
+ padding:15px;
+ margin-top:17px;
+ border:1px solid #ff5264;
+ border-radius:12px;
+ background:linear-gradient(100deg,#a90019,#ed2039);
+ color:white;
+ font-weight:bold;
+ font-size:14px;
+ letter-spacing:1px;
+ cursor:pointer;
 }
-footer{text-align:center;color:#6399b8;padding:25px;font-size:12px}
+button:active{transform:scale(.98)}
+.note{
+ color:#999;
+ font-size:12px;
+ line-height:1.7;
+ margin-top:15px;
+}
+footer{
+ text-align:center;
+ color:#777;
+ padding:30px 15px;
+ font-size:11px;
+ letter-spacing:2px;
+ border-top:1px solid #351016;
+ margin-top:35px;
+}
+.reveal{
+ opacity:0;
+ transform:translateY(35px);
+ transition:opacity .75s ease,transform .75s ease;
+}
+.reveal.show{
+ opacity:1;
+ transform:translateY(0);
+}
+@media(prefers-reduced-motion:reduce){
+ .reveal{opacity:1;transform:none;transition:none}
+ html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
+
 <header>
-<h2>LUTTUXER MD</h2>
-<p>WHATSAPP BOT CONTROL PANEL</p>
+ <h2>LUTTUXER MD</h2>
+ <p>WHATSAPP BOT CONTROL PANEL</p>
 </header>
+
 <main>
-<img class="poster" src="/luttu-banner.jpg" alt="Luttuxer MD Poster">
+ <section class="hero reveal">
+  <div class="tag">OFFICIAL DASHBOARD</div>
+  <h1>WELCOME TO <span>LUTTU MD</span></h1>
+  <p>Your WhatsApp bot dashboard.<br>Simple. Powerful. Secure.</p>
+ </section>
 
-<div class="card">
-<h3>🤖 BOT DASHBOARD</h3>
-<div class="item">Server Status: <span class="status" id="status">Checking...</span></div>
-<div class="item">Platform: Termux</div>
-<div class="item">Project: Luttuxer MD</div>
-<button onclick="checkStatus()">CHECK SERVER STATUS</button>
-</div>
+ <section class="reveal">
+  <img class="poster" src="/luttu-banner.jpg" alt="Luttuxer MD Poster">
+ </section>
 
-<div class="card">
-<h3>⚡ SESSION MANAGER</h3>
-<div class="item">Session management: Coming soon</div>
-<div class="item">Secure account connection</div>
-</div>
+ <section class="card reveal">
+  <h3>🤖 BOT DASHBOARD</h3>
+  <div class="item">Server Status: <span class="status" id="status">Checking...</span></div>
+  <div class="item">Platform: Termux</div>
+  <div class="item">Project: Luttuxer MD</div>
+  <button onclick="checkStatus()">CHECK SERVER STATUS</button>
+ </section>
+
+ <section class="card reveal">
+  <h3>⚡ SESSION MANAGER</h3>
+  <div class="item">🔐 Session Management: Coming Soon</div>
+  <div class="item">🛡️ Secure Account Connection</div>
+  <p class="note">Session management features will be available here when the secure connection system is ready.</p>
+ </section>
 </main>
+
 <footer>POWERED BY LUTTUXER MD 🤍</footer>
+
 <script>
 async function checkStatus(){
-const el=document.getElementById("status");
-try{
-const r=await fetch("/api/health");
-const d=await r.json();
-el.textContent=d.status==="online"?"● ONLINE":"OFFLINE";
-}catch(e){el.textContent="● OFFLINE";}
+ const el=document.getElementById("status");
+ el.textContent="Checking...";
+ try{
+  const r=await fetch("/api/health");
+  if(!r.ok) throw new Error("Server unavailable");
+  const d=await r.json();
+  el.textContent=d.status==="online"?"● ONLINE":"● OFFLINE";
+ }catch(e){
+  el.textContent="● OFFLINE";
+ }
 }
+
+const observer=new IntersectionObserver((entries)=>{
+ entries.forEach((entry)=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add("show");
+   observer.unobserve(entry.target);
+  }
+ });
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach((el)=>{
+ observer.observe(el);
+});
+
 checkStatus();
 </script>
 </body>
