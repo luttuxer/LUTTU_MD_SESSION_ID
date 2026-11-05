@@ -158,7 +158,7 @@ footer{
   <img class="poster" src="/luttu-banner.jpg" alt="Luttuxer MD Poster">
  </section>
 
- <section class="card reveal">
+ <section id="bot-dashboard" class="card reveal">
   <h3>🤖 BOT DASHBOARD</h3>
   <div class="item">Server Status: <span class="status" id="status">Checking...</span></div>
   <div class="item">Platform: Termux</div>
@@ -224,10 +224,33 @@ const observer=new IntersectionObserver((entries)=>{
  });
 },{threshold:0.02});
 
-document.querySelectorAll(".reveal").forEach((el)=>{
+document.querySelectorAll(".reveal:not(#bot-dashboard)").forEach((el)=>{
  el.style.transitionDelay="0s";
  observer.observe(el);
 });
+
+const botDashboard=document.querySelector("#bot-dashboard");
+if(botDashboard){
+ const botObserver=new IntersectionObserver(([entry])=>{
+  if(entry.isIntersecting){
+   botDashboard.style.setProperty(
+    "--reveal-x",
+    scrollDirection==="down"?"-65px":"65px"
+   );
+   botDashboard.classList.remove("show");
+   requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>botDashboard.classList.add("show"));
+   });
+  }else{
+   botDashboard.style.setProperty(
+    "--reveal-x",
+    scrollDirection==="up"?"65px":"-65px"
+   );
+   botDashboard.classList.remove("show");
+  }
+ },{threshold:0.1});
+ botObserver.observe(botDashboard);
+}
 checkStatus();
 </script>
 </body>
