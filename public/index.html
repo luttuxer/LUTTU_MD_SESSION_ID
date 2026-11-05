@@ -123,12 +123,21 @@ footer{
 }
 .reveal{
  opacity:0;
- transform:translateY(35px);
- transition:opacity .75s ease,transform .75s ease;
+ transform:translateX(-65px);
+ transition:opacity .7s ease,transform .7s ease;
 }
 .reveal.show{
  opacity:1;
- transform:translateY(0);
+ transform:translateX(0);
+}
+.reveal.exit-right{
+ opacity:0;
+ transform:translateX(65px);
+}
+@media(prefers-reduced-motion:reduce){
+ .reveal,.reveal.show,.reveal.exit-right{
+  transition:none;
+ }
 }
 @media(prefers-reduced-motion:reduce){
  html{scroll-behavior:auto}
@@ -199,22 +208,23 @@ window.addEventListener("scroll",()=>{
 const observer=new IntersectionObserver((entries)=>{
  entries.forEach((entry)=>{
   const el=entry.target;
-  if(entry.isIntersecting){
-   el.style.setProperty(
-    "--reveal-offset",
-    scrollDirection==="down"?"35px":"-35px"
-   );
+
+  if(entry.isIntersecting && scrollDirection==="down"){
+   el.classList.remove("exit-right");
    requestAnimationFrame(()=>el.classList.add("show"));
-  }else{
+  }else if(!entry.isIntersecting && scrollDirection==="up"){
    el.classList.remove("show");
+   el.classList.add("exit-right");
+  }else if(!entry.isIntersecting && scrollDirection==="down"){
+   el.classList.remove("show","exit-right");
   }
  });
-},{threshold:0.12});
+},{threshold:0.15});
 
-document.querySelectorAll(".reveal").forEach(el=>{
+document.querySelectorAll(".reveal").forEach((el,index)=>{
+ el.style.transitionDelay=(index*0.10)+"s";
  observer.observe(el);
 });
-
 checkStatus();
 </script>
 </body>
