@@ -154,7 +154,7 @@ footer{
   <p>Your WhatsApp bot dashboard.<br>Simple. Powerful. Secure.</p>
  </section>
 
- <section class="reveal">
+ <section>
   <img class="poster" src="/luttu-banner.jpg" alt="Luttuxer MD Poster">
  </section>
 
@@ -206,22 +206,26 @@ const observer=new IntersectionObserver((entries)=>{
   const el=entry.target;
 
   if(entry.isIntersecting){
-   el.classList.remove("show");
    el.style.setProperty(
     "--reveal-x",
     scrollDirection==="down"?"-65px":"65px"
    );
+   el.classList.remove("show");
    requestAnimationFrame(()=>{
     requestAnimationFrame(()=>el.classList.add("show"));
    });
   }else{
+   el.style.setProperty(
+    "--reveal-x",
+    scrollDirection==="up"?"65px":"-65px"
+   );
    el.classList.remove("show");
   }
  });
-},{threshold:0.12});
+},{threshold:0.02});
 
-document.querySelectorAll(".reveal").forEach((el,index)=>{
- el.style.transitionDelay=(index*0.10)+"s";
+document.querySelectorAll(".reveal").forEach((el)=>{
+ el.style.transitionDelay="0s";
  observer.observe(el);
 });
 checkStatus();
